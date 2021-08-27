@@ -10,7 +10,9 @@ using Authorization_and_Authentication.Models;
 
 namespace Authorization_and_Authentication.Controllers
 {
-    [Authorize]  // User won't be able to see the list without login - Authentication_and_Authorization
+    /*[Authorize] - Lets use this at global level*/  // User won't be able to see the list without login - Authentication_and_Authorization
+
+   
     public class EmployeeController : Controller
     {
         private EmployeeEnterpriseEntities db = new EmployeeEnterpriseEntities();
@@ -123,6 +125,12 @@ namespace Authorization_and_Authentication.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        [AllowAnonymous]  // Now this page will be visible without login as well
+        public ActionResult About()
+        {
+            return View();
         }
     }
 }

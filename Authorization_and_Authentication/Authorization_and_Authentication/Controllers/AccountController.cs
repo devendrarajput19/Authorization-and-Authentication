@@ -8,6 +8,7 @@ using Authorization_and_Authentication.Models;
 
 namespace Authorization_and_Authentication.Controllers
 {
+    [AllowAnonymous]                // now this page can be accessible to user.
     public class AccountController : Controller
     {
         // GET: Account
