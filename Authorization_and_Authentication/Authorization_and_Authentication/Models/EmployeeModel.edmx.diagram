@@ -7,6 +7,8 @@
       <Diagram DiagramId="3a0629208d1d40a580c89b9b83462b64" Name="Diagram1">
         <EntityTypeShape EntityType="EmployeeEnterpriseModel.Employee" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="EmployeeEnterpriseModel.User" Width="1.5" PointX="3.375" PointY="0.75" />
+        <EntityTypeShape EntityType="EmployeeEnterpriseModel.UserRole" Width="1.5" PointX="5.75" PointY="0.875" />
+        <AssociationConnector Association="EmployeeEnterpriseModel.FK_userRoles" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

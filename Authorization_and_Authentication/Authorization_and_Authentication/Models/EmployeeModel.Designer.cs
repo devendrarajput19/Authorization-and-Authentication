@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'C:\Devendra\Programs\MVC\Authorization_and_Authentication\Authorization_and_Authentication\Models\EmployeeModel.edmx'. 
+﻿// T4 code generation is enabled for model 'C:\Devendra\Programs\MVC\Completed Programs\Authorization_and_Authentication\Authorization_and_Authentication\Models\EmployeeModel.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

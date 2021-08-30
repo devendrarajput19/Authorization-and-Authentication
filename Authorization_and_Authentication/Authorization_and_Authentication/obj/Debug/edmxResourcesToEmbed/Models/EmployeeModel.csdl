@@ -13,6 +13,11 @@
   <EntityContainer Name="EmployeeEnterpriseEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Employees" EntityType="Self.Employee" />
     <EntitySet Name="Users" EntityType="EmployeeEnterpriseModel.User" />
+    <EntitySet Name="UserRoles" EntityType="EmployeeEnterpriseModel.UserRole" />
+    <AssociationSet Name="FK_userRoles" Association="EmployeeEnterpriseModel.FK_userRoles">
+      <End Role="User" EntitySet="Users" />
+      <End Role="UserRole" EntitySet="UserRoles" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="User">
     <Key>
@@ -21,5 +26,27 @@
     <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="UserName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
     <Property Name="Password" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="UserRoles" Relationship="EmployeeEnterpriseModel.FK_userRoles" FromRole="User" ToRole="UserRole" />
   </EntityType>
+  <EntityType Name="UserRole">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="Roles" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="User" Relationship="EmployeeEnterpriseModel.FK_userRoles" FromRole="UserRole" ToRole="User" />
+  </EntityType>
+  <Association Name="FK_userRoles">
+    <End Type="EmployeeEnterpriseModel.User" Role="User" Multiplicity="1" />
+    <End Type="EmployeeEnterpriseModel.UserRole" Role="UserRole" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="UserRole">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

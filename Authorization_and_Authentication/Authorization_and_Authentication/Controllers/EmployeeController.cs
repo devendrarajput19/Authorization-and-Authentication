@@ -12,12 +12,13 @@ namespace Authorization_and_Authentication.Controllers
 {
     /*[Authorize] - Lets use this at global level*/  // User won't be able to see the list without login - Authentication_and_Authorization
 
-   
+   [Authorize]
     public class EmployeeController : Controller
     {
         private EmployeeEnterpriseEntities db = new EmployeeEnterpriseEntities();
 
         // GET: Employee
+       
         public ActionResult Index()
         {
             return View(db.Employees.ToList());
@@ -38,6 +39,7 @@ namespace Authorization_and_Authentication.Controllers
             return View(employee);
         }
 
+        [Authorize(Roles = "Admin, Customer")]
         // GET: Employee/Create
         public ActionResult Create()
         {
@@ -49,6 +51,7 @@ namespace Authorization_and_Authentication.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin, Customer")]
         public ActionResult Create([Bind(Include = "EmployeeID,FullName,Email,Address,JoiningDate")] Employee employee)
         {
             if (ModelState.IsValid)
@@ -62,6 +65,7 @@ namespace Authorization_and_Authentication.Controllers
         }
 
         // GET: Employee/Edit/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -81,6 +85,7 @@ namespace Authorization_and_Authentication.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit([Bind(Include = "EmployeeID,FullName,Email,Address,JoiningDate")] Employee employee)
         {
             if (ModelState.IsValid)
@@ -93,6 +98,7 @@ namespace Authorization_and_Authentication.Controllers
         }
 
         // GET: Employee/Delete/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -110,6 +116,7 @@ namespace Authorization_and_Authentication.Controllers
         // POST: Employee/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult DeleteConfirmed(int id)
         {
             Employee employee = db.Employees.Find(id);
